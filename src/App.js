@@ -1,10 +1,16 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./App.css";
 
 function App() {
   const [question, setQuestion] = useState("");
   const [answer, setAnswer] = useState("");
   const [loading, setLoading] = useState(false);
+  const [showSplash, setShowSplash] = useState(true);
+
+  useEffect(() => {
+    const timer = setTimeout(() => setShowSplash(false), 2000);
+    return () => clearTimeout(timer);
+  }, []);
 
   const handleSend = async () => {
     if (!question.trim()) return;
@@ -34,37 +40,45 @@ function App() {
 
   return (
     <div className="container">
-      <div className="chatbox">
-        <h1>🤖 Bot Operacyjny</h1>
-        <input
-          type="text"
-          placeholder="Zadaj pytanie..."
-          value={question}
-          onChange={(e) => setQuestion(e.target.value)}
-          onKeyDown={(e) => e.key === "Enter" && handleSend()}
-        />
-        <button onClick={handleSend} disabled={loading}>
-          {loading ? "Wysyłanie..." : "Wyślij"}
-        </button>
-        {answer && (
-          <div
-            className="response"
-            dangerouslySetInnerHTML={{
-              __html: answer
-                .replace(
-                  /\[([^\]]+)\]\((https?:\/\/[^\s)]+)\)/g,
-                  '<a href="$2" target="_blank" rel="noopener noreferrer" style="color:#2563eb;">$1</a>'
-                )
-                .replace(
-                  /(?<!href=")(https?:\/\/[^\s]+)/g,
-                  '<a href="$1" target="_blank" rel="noopener noreferrer" style="color:#2563eb;">$1</a>'
-                )
-            }}
+      {showSplash ? (
+        <div className="splash-screen">
+          <img src="splash.png" alt="PEDROżer ładuje..." />
+          <p className="splash-text">How! How! Odpowiedź w drodze...</p>
+        </div>
+      ) : (
+        <div className="chatbox">
+          <h1>🤖 PEDROżer</h1>
+          <input
+            type="text"
+            placeholder="Zadaj pytanie..."
+            value={question}
+            onChange={(e) => setQuestion(e.target.value)}
+            onKeyDown={(e) => e.key === "Enter" && handleSend()}
           />
-        )}
-      </div>
+          <button onClick={handleSend} disabled={loading}>
+            {loading ? "Wysyłanie..." : "Wyślij"}
+          </button>
+          {answer && (
+            <div
+              className="response"
+              dangerouslySetInnerHTML={{
+                __html: answer
+                  .replace(
+                    /\[([^\]]+)\]\((https?:\/\/[^\s)]+)\)/g,
+                    '<a href="$2" target="_blank" rel="noopener noreferrer" style="color:#2563eb;">$1</a>'
+                  )
+                  .replace(
+                    /(?<!href=")(https?:\/\/[^\s]+)/g,
+                    '<a href="$1" target="_blank" rel="noopener noreferrer" style="color:#2563eb;">$1</a>'
+                  )
+              }}
+            />
+          )}
+        </div>
+      )}
     </div>
   );
 }
 
 export default App;
+
