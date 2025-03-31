@@ -48,7 +48,6 @@ function App() {
       ) : (
         <div className="chatbox">
           <img src="pedro-logo.png" alt="PEDROżer" className="logo-img" />
-          <h1>PEDROżer</h1>
 
           <input
             type="text"
