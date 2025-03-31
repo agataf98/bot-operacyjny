@@ -31,12 +31,13 @@ body {
 
 /* Logo PEDROżera */
 .logo-img {
-  width: 120px;
+  width: 240px;
+  max-width: 90%;
   height: auto;
-  margin: 0 auto 0.5rem;
+  margin: 0 auto 1rem;
   display: block;
-  border-radius: 50%;
 }
+
 
 /* Tytuł */
 .chatbox h1 {
