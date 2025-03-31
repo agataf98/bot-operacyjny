@@ -31,12 +31,13 @@ body {
 
 /* Logo PEDROżera */
 .logo-img {
-  width: 240px;
-  max-width: 90%;
+  width: 320px;
+  max-width: 95%;
   height: auto;
   margin: 0 auto 1rem;
   display: block;
 }
+
 
 
 /* Tytuł */
