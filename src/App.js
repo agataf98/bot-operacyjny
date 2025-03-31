@@ -47,7 +47,9 @@ function App() {
         </div>
       ) : (
         <div className="chatbox">
-          <h1>🤖 PEDROżer</h1>
+          <img src="pedro-logo.png" alt="PEDROżer" className="logo-img" />
+          <h1>PEDROżer</h1>
+
           <input
             type="text"
             placeholder="Zadaj pytanie..."
@@ -58,7 +60,14 @@ function App() {
           <button onClick={handleSend} disabled={loading}>
             {loading ? "Wysyłanie..." : "Wyślij"}
           </button>
-          {answer && (
+
+          {loading && (
+            <div className="pedro-loader">
+              <p>PEDROżer kopie...</p>
+            </div>
+          )}
+
+          {answer && !loading && (
             <div
               className="response"
               dangerouslySetInnerHTML={{
@@ -79,6 +88,9 @@ function App() {
     </div>
   );
 }
+
+export default App;
+
 
 export default App;
 

@@ -1,4 +1,4 @@
-/* Ogólne */
+/* Reset stylów */
 body {
   margin: 0;
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
@@ -6,7 +6,7 @@ body {
   color: #333;
 }
 
-/* Kontener aplikacji */
+/* Główne opakowanie */
 .container {
   min-height: 100vh;
   display: flex;
@@ -15,25 +15,37 @@ body {
   padding: 1rem;
 }
 
-/* Okno czatu */
+/* Panel czatu */
 .chatbox {
   background: #fff;
   border-radius: 1rem;
-  box-shadow: 0 0 25px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 0 25px rgba(0, 0, 0, 0.08);
   padding: 2rem;
   width: 100%;
   max-width: 500px;
   display: flex;
   flex-direction: column;
   gap: 1rem;
+  text-align: center;
 }
 
+/* Logo PEDROżera */
+.logo-img {
+  width: 120px;
+  height: auto;
+  margin: 0 auto 0.5rem;
+  display: block;
+  border-radius: 50%;
+}
+
+/* Tytuł */
 .chatbox h1 {
-  text-align: center;
+  margin: 0;
+  font-size: 1.5rem;
   color: #2563eb;
 }
 
-/* Pole tekstowe i przycisk */
+/* Pole pytania */
 input[type="text"] {
   padding: 0.75rem;
   font-size: 1rem;
@@ -42,6 +54,7 @@ input[type="text"] {
   outline: none;
 }
 
+/* Przycisk */
 button {
   padding: 0.75rem;
   background-color: #2563eb;
@@ -62,19 +75,27 @@ button:hover:not(:disabled) {
   background-color: #1e4fc5;
 }
 
-/* Odpowiedź */
+/* Odpowiedź bota */
 .response {
   padding: 1rem;
   background-color: #f0f4ff;
   border-radius: 0.5rem;
   font-size: 1rem;
   line-height: 1.5;
+  text-align: left;
 }
 
 .response a {
   color: #2563eb;
   text-decoration: underline;
   word-break: break-word;
+}
+
+/* Loader – PEDROżer kopie... */
+.pedro-loader {
+  font-weight: 500;
+  font-size: 1rem;
+  color: #2563eb;
 }
 
 /* Splash screen */
@@ -87,12 +108,11 @@ button:hover:not(:disabled) {
   justify-content: center;
   align-items: center;
   color: white;
-  z-index: 1000;
-  animation: fadeOut 0.5s ease-in-out forwards;
+  z-index: 999;
 }
 
 .splash-screen img {
-  width: 200px;
+  width: 180px;
   max-width: 80%;
   margin-bottom: 1rem;
 }
@@ -103,14 +123,7 @@ button:hover:not(:disabled) {
   text-align: center;
 }
 
-/* Animacja znikania */
-@keyframes fadeOut {
-  0% { opacity: 1; }
-  99% { opacity: 1; }
-  100% { opacity: 0; visibility: hidden; }
-}
-
-/* Mobilna responsywność */
+/* Responsywność mobilna */
 @media (max-width: 600px) {
   .chatbox {
     padding: 1.5rem;
@@ -120,8 +133,13 @@ button:hover:not(:disabled) {
     font-size: 0.95rem;
   }
 
+  .logo-img {
+    width: 90px;
+  }
+
   .splash-screen img {
-    width: 150px;
+    width: 140px;
   }
 }
+
 
