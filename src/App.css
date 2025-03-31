@@ -38,6 +38,28 @@ body {
   display: block;
 }
 
+/* RESPONSYWNOŚĆ mobilna */
+@media (max-width: 600px) {
+  .logo-img {
+    width: 200px;
+  }
+
+  .chatbox {
+    padding: 1.5rem;
+  }
+
+  input[type="text"] {
+    font-size: 1rem;
+  }
+
+  button {
+    font-size: 1rem;
+  }
+
+  .response {
+    font-size: 0.95rem;
+  }
+}
 
 
 /* Tytuł */
