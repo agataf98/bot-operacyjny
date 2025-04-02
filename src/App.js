@@ -4,7 +4,9 @@ import "./App.css";
 function App() {
   const [question, setQuestion] = useState("");
   const [answer, setAnswer] = useState("");
+  const [rawAnswer, setRawAnswer] = useState("");
   const [loading, setLoading] = useState(false);
+  const [showFeedback, setShowFeedback] = useState(false);
   const [showSplash, setShowSplash] = useState(true);
 
   useEffect(() => {
@@ -16,6 +18,7 @@ function App() {
     if (!question.trim()) return;
     setLoading(true);
     setAnswer("");
+    setShowFeedback(false);
 
     try {
       const response = await fetch("https://bot-operacyjny-692847427928.europe-central2.run.app", {
@@ -31,11 +34,29 @@ function App() {
 
       const data = await response.json();
       setAnswer(data.text || "Brak odpowiedzi.");
+      setRawAnswer(data.answer || "");
+      setShowFeedback(true);
     } catch (error) {
       setAnswer("❌ Błąd podczas komunikacji z botem.");
     } finally {
       setLoading(false);
     }
+  };
+
+  const handleFeedback = async (feedback) => {
+    setShowFeedback(false);
+    await fetch("https://bot-operacyjny-692847427928.europe-central2.run.app", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        feedback,
+        question,
+        answer: rawAnswer,
+        message: { sender: { email: "agata@example.com" } }
+      })
+    });
   };
 
   return (
@@ -67,20 +88,19 @@ function App() {
           )}
 
           {answer && !loading && (
-            <div
-              className="response"
-              dangerouslySetInnerHTML={{
-                __html: answer
-                  .replace(
-                    /\[([^\]]+)\]\((https?:\/\/[^\s)]+)\)/g,
-                    '<a href="$2" target="_blank" rel="noopener noreferrer" style="color:#2563eb;">$1</a>'
-                  )
-                  .replace(
-                    /(?<!href=")(https?:\/\/[^\s]+)/g,
-                    '<a href="$1" target="_blank" rel="noopener noreferrer" style="color:#2563eb;">$1</a>'
-                  )
-              }}
-            />
+            <div>
+              <div
+                className="response"
+                dangerouslySetInnerHTML={{ __html: answer }}
+              />
+              {showFeedback && (
+                <div className="feedback">
+                  <p>Czy ta odpowiedź była pomocna?</p>
+                  <button onClick={() => handleFeedback("tak")}>👍 Tak</button>
+                  <button onClick={() => handleFeedback("nie")}>👎 Nie</button>
+                </div>
+              )}
+            </div>
           )}
         </div>
       )}
@@ -89,6 +109,3 @@ function App() {
 }
 
 export default App;
-
-
-

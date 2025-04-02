@@ -1,169 +1,146 @@
-/* Reset stylów */
-body {
-  margin: 0;
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-  background-color: #f2f4f8;
-  color: #333;
-}
-
-/* Główne opakowanie */
+/* Podstawowy układ */
 .container {
-  min-height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 1rem;
-}
-
-/* Panel czatu */
-.chatbox {
-  background: #fff;
-  border-radius: 1rem;
-  box-shadow: 0 0 25px rgba(0, 0, 0, 0.08);
+  font-family: 'Segoe UI', sans-serif;
   padding: 2rem;
-  width: 100%;
-  max-width: 500px;
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-  text-align: center;
-}
-
-/* Logo PEDROżera */
-.logo-img {
-  width: 320px;
-  max-width: 95%;
-  height: auto;
-  margin: 0 auto 1rem;
-  display: block;
-}
-
-/* RESPONSYWNOŚĆ mobilna */
-@media (max-width: 600px) {
-  .logo-img {
-    width: 200px;
-  }
-
-  .chatbox {
-    padding: 1.5rem;
-  }
-
-  input[type="text"] {
-    font-size: 1rem;
-  }
-
-  button {
-    font-size: 1rem;
-  }
-
-  .response {
-    font-size: 0.95rem;
-  }
-}
-
-
-/* Tytuł */
-.chatbox h1 {
-  margin: 0;
-  font-size: 1.5rem;
-  color: #2563eb;
-}
-
-/* Pole pytania */
-input[type="text"] {
-  padding: 0.75rem;
-  font-size: 1rem;
-  border: 2px solid #ddd;
-  border-radius: 0.5rem;
-  outline: none;
-}
-
-/* Przycisk */
-button {
-  padding: 0.75rem;
-  background-color: #2563eb;
-  color: white;
-  border: none;
-  border-radius: 0.5rem;
-  font-size: 1rem;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-button:disabled {
-  background-color: #94b3f0;
-  cursor: not-allowed;
-}
-
-button:hover:not(:disabled) {
-  background-color: #1e4fc5;
-}
-
-/* Odpowiedź bota */
-.response {
-  padding: 1rem;
-  background-color: #f0f4ff;
-  border-radius: 0.5rem;
-  font-size: 1rem;
-  line-height: 1.5;
-  text-align: left;
-}
-
-.response a {
-  color: #2563eb;
-  text-decoration: underline;
-  word-break: break-word;
-}
-
-/* Loader – PEDROżer kopie... */
-.pedro-loader {
-  font-weight: 500;
-  font-size: 1rem;
-  color: #2563eb;
+  max-width: 600px;
+  margin: 0 auto;
 }
 
 /* Splash screen */
 .splash-screen {
   position: fixed;
-  inset: 0;
-  background-color: #2563eb;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: white;
+  z-index: 9999;
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
-  color: white;
-  z-index: 999;
+  justify-content: center;
+  text-align: center;
+  padding: 2rem;
+  box-sizing: border-box;
 }
 
 .splash-screen img {
-  width: 180px;
-  max-width: 80%;
+  max-width: 220px;
   margin-bottom: 1rem;
 }
 
 .splash-text {
-  font-size: 1.2rem;
+  font-size: 1.3rem;
   font-weight: bold;
+  color: #2563eb;
+  animation: fadeIn 1s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Logo */
+.logo-img {
+  width: 320px;
+  max-width: 95%;
+  height: auto;
+  margin: 0 auto 1.5rem;
+  display: block;
+}
+
+/* Input i przycisk */
+input[type="text"] {
+  width: 100%;
+  padding: 0.8rem;
+  margin-bottom: 1rem;
+  font-size: 1.1rem;
+  border: 2px solid #ddd;
+  border-radius: 12px;
+}
+
+button {
+  padding: 0.7rem 1.2rem;
+  background-color: #2563eb;
+  color: white;
+  border: none;
+  border-radius: 12px;
+  font-size: 1.1rem;
+  cursor: pointer;
+}
+
+button:disabled {
+  background-color: #b4c7f0;
+  cursor: not-allowed;
+}
+
+/* Loader */
+.pedro-loader {
+  margin-top: 1rem;
+  font-style: italic;
+  color: #555;
   text-align: center;
 }
 
-/* Responsywność mobilna */
+/* Odpowiedź */
+.response {
+  margin-top: 1.5rem;
+  font-size: 1.05rem;
+  background: #f4f6fb;
+  padding: 1.2rem;
+  border-radius: 16px;
+  box-shadow: 0 0 4px rgba(0,0,0,0.05);
+}
+
+.response a {
+  color: #2563eb;
+  font-weight: 500;
+  text-decoration: underline;
+}
+
+.response img {
+  margin-top: 1rem;
+  max-width: 100%;
+  border-radius: 10px;
+}
+
+/* Feedback */
+.feedback {
+  margin-top: 1rem;
+  text-align: center;
+}
+
+.feedback p {
+  margin-bottom: 0.5rem;
+}
+
+.feedback button {
+  margin: 0 0.5rem;
+  font-size: 1rem;
+  padding: 0.5rem 1rem;
+  background-color: #eee;
+  color: #333;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+}
+
+.feedback button:hover {
+  background-color: #ddd;
+}
+
+/* Mobile */
 @media (max-width: 600px) {
-  .chatbox {
-    padding: 1.5rem;
+  .logo-img {
+    width: 200px;
+  }
+
+  input[type="text"],
+  button {
+    font-size: 1rem;
   }
 
   .response {
-    font-size: 0.95rem;
-  }
-
-  .logo-img {
-    width: 90px;
-  }
-
-  .splash-screen img {
-    width: 140px;
+    font-size: 1rem;
   }
 }
-
-
