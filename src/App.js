@@ -27,8 +27,10 @@ function App() {
           "Content-Type": "application/json"
         },
         body: JSON.stringify({
-          message: { text: question },
-          sender: { email: "agata@example.com" }
+          message: {
+            text: question,
+            sender: { email: "agata@example.com" }
+          }
         })
       });
 
@@ -54,7 +56,9 @@ function App() {
         feedback,
         question,
         answer: rawAnswer,
-        message: { sender: { email: "agata@example.com" } }
+        message: {
+          sender: { email: "agata@example.com" }
+        }
       })
     });
   };
